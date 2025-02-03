@@ -6,10 +6,10 @@ from PyQt6.QtGui import *
 class ControlPanel(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setObjectName("ControlPanel")
         self.layout = QGridLayout()
         self.layout.setSpacing(10)
         self.setContentsMargins(0, 0, 0, 0)
-        self.setObjectName("controlPanel")
         self.populate()
         self.setLayout(self.layout)
         self.setMaximumWidth(300)

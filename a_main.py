@@ -1,6 +1,7 @@
 from control_panel import ControlPanel
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
+from media_panel import *
 import sys
 
 class MainWindow(QMainWindow):
@@ -9,7 +10,7 @@ class MainWindow(QMainWindow):
         
         self.setWindowTitle('AutoShorts')
         self.setObjectName('MainWindow')
-        #self.setWindowIcon(path)
+        self.setWindowIcon(QIcon("Images/placeholder.png"))
         self.setMinimumSize(900, 700)
         
         central_widget = QWidget(self)
@@ -21,6 +22,10 @@ class MainWindow(QMainWindow):
         
         self.control_panel = ControlPanel()
         self.layout.addWidget(self.control_panel, 0, 0, 1, 1)
+        
+        self.media_panel = MediaPanel()
+        self.layout.addWidget(self.media_panel, 0, 1, 1, 3)
+    
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

@@ -6,13 +6,13 @@ from PyQt6.QtGui import *
 class DragDrop(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setObjectName("dragDrop")
+        self.setObjectName("DragDrop")
         self.setMinimumSize(60, 60)
         self.setAcceptDrops(True)
         
         self.layout = QGridLayout(self)
         self.label = QLabel("DRAG", self)
-        self.label.setObjectName("dragDropLabel")
+        self.label.setObjectName("DragDropLabel")
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         self.layout.addWidget(self.label, 0, 0, 1, 1)
@@ -34,13 +34,13 @@ class DragDrop(QWidget):
 class FileDialog(QPushButton):
     def __init__(self, parent=None, icon=None, expected=None):
         super().__init__(parent)
-        self.setObjectName("fileDialog")
+        self.setObjectName("FileDialog")
         self.VALID_EXTENSION = ('.mp4', '.mov') if expected=="video" else ('.mp3', 'wav')
         self.PROMPT = f"Select {expected} file"
         self.TIP = f"{expected.capitalize()} files ({" *".join(self.VALID_EXTENSION)})"
         self.associated_file = None
         self.setMinimumSize(60, 60)
-        self.setMaximumHeight(100)
+        self.setMaximumHeight(200)
         self.setIcon(QIcon(icon))
         self.setIconSize(QSize(20, 20))
         self.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -59,7 +59,7 @@ class FileDialog(QPushButton):
 class ControlGroup(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setObjectName("controlGroup")
+        self.setObjectName("ControlGroup")
         self.layout = QHBoxLayout()
         self.setLayout(self.layout)
         
@@ -73,11 +73,11 @@ class ControlGroup(QWidget):
 class TextField(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setObjectName("textField")
+        self.setObjectName("TextField")
         self.layout = QVBoxLayout()
         
         field = QTextEdit()
-        field.setObjectName("textFieldInner")
+        field.setObjectName("TextFieldInner")
         field.setPlaceholderText("Text here: ")
         field.setCursorWidth(6)
                 
