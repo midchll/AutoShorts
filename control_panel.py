@@ -21,13 +21,13 @@ class ControlPanel(QWidget):
         # VIDEO CONTROLS
         v_group = ControlGroup()
         v_dialog = FileDialog(icon="Images/folder.png", expected="video")
-        v_drag = DragDrop()
+        v_drag = DragDrop(icon="Images/upload-arrow.png")
         v_group.add_children([v_dialog, v_drag])
         
         # AUDIO CONTROLS
         a_group = ControlGroup()
         a_dialog = FileDialog(icon="Images/folder.png", expected="audio")
-        a_drag = DragDrop()
+        a_drag = DragDrop(icon="Images/upload-arrow.png")
         a_group.add_children([a_dialog, a_drag])
         
         # TEXT INPUT

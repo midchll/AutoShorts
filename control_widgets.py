@@ -4,19 +4,20 @@ from PyQt6.QtCore import *
 from PyQt6.QtGui import *
 
 class DragDrop(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, icon=None):
         super().__init__(parent)
         self.setObjectName("DragDrop")
         self.setMinimumSize(60, 60)
         self.setAcceptDrops(True)
         
         self.layout = QGridLayout(self)
-        self.label = QLabel("DRAG", self)
-        self.label.setObjectName("DragDropLabel")
+        pixmap = QPixmap(icon)
+        self.label = QLabel()
+        self.label.setPixmap(pixmap)
+        self.label.setFixedSize(pixmap.width(), pixmap.height())
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.label.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
-        self.layout.addWidget(self.label, 0, 0, 1, 1)
         
+        self.layout.addWidget(self.label)
         self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True)
         self.setLayout(self.layout)
         
@@ -48,7 +49,7 @@ class FileDialog(QPushButton):
         self.clicked.connect(lambda: self.open_dialog())
     
     def open_dialog(self):
-        dialog = QFileDialog.getOpenFileName(self, self.PROMPT, r'C:\\', self.TIP)
+        dialog = QFileDialog.getOpenFileName(self, self.PROMPT, r'', self.TIP)
         if dialog:
             file_name = dialog
             if file_name[0].endswith(self.VALID_EXTENSION):
