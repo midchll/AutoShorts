@@ -1,0 +1,47 @@
+#MainWindow {
+    background-color: #202020;
+}
+
+QWidget#controlPanel {
+    background-color: #252525;
+    border: 1px solid #303030;
+    border-radius: 20px;
+}
+
+QWidget#controlGroup {
+    background-color: #202020;
+    border: 1px solid #303030;
+    border-radius: 16px;
+}
+
+#fileDialog {
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+}
+
+#fileDialog:hover {
+    background-color: #DDDDDD;
+}
+
+#dragDrop {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+
+#dragDropLabel {
+    color: #DDDDDD;
+}
+
+#textField {
+    border: 1px solid #303030;
+    background-color: #202020;
+    border-radius: 16px;
+}
+
+#textFieldInner {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    color: #202020;
+    padding: 8px;
+}

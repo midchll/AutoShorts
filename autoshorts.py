@@ -1,32 +1,37 @@
+from control_panel import ControlPanel
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 import sys
-import os
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        
-        layout = QGridLayout()
         
         self.setWindowTitle('AutoShorts')
         self.setObjectName('MainWindow')
         #self.setWindowIcon(path)
         self.setMinimumSize(900, 700)
         
-        # Add widgets to layout (.addWidget())
+        central_widget = QWidget(self)
+        self.setCentralWidget(central_widget)
         
-        widget = QWidget()
-        widget.setLayout(layout)
-        self.setCentralWidget(widget)
-
+        self.layout = QGridLayout()
+        central_widget.setLayout(self.layout)
+        central_widget.setContentsMargins(0, 0, 0, 0)
+        
+        self.control_panel = ControlPanel()
+        self.layout.addWidget(self.control_panel, 0, 0, 1, 1)
 
 if __name__ == "__main__":
-    def load_stylesheet(filename):
-        pass
-
     app = QApplication(sys.argv)
-    #app.setStyleSheet(load_stylesheet('styles.qss'))
+    
+    stylesheet = QFile('styles.qss')
+    stylesheet.open(QFile.OpenModeFlag.ReadOnly | QFile.OpenModeFlag.Text)
+    stream = QTextStream(stylesheet)
+    styles = stream.readAll()
+    app.setStyleSheet(styles)
+    stylesheet.close()
+
     window = MainWindow()
     window.show()
 
