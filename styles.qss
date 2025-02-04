@@ -14,23 +14,26 @@ QWidget#ControlGroup {
     border-radius: 16px;
 }
 
+#VideoIndicator, #AudioIndicator {
+    background-color: #FFE500;
+    border-radius: 8px;
+}
+
 #FileDialog {
     background-color: #FFFFFF;
     border: none;
     border-radius: 10px;
+    margin-bottom: 3px;
 }
 
 #FileDialog:hover {
-    background-color: #DDDDDD;
+    background-color: #FCFBE6;
+    border: 3px solid #FFE500;
 }
 
 #DragDrop {
     background-color: #FFFFFF;
     border-radius: 10px;
-}
-
-#DragDropLabel {
-    color: #DDDDDD;
 }
 
 #TextField {
