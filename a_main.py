@@ -8,7 +8,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle('AutoShorts')
+        self.setWindowTitle('EasyMedia')
         self.setObjectName('MainWindow')
         self.setWindowIcon(QIcon("Images/placeholder.png"))
         self.setMinimumSize(900, 700)
@@ -25,6 +25,7 @@ class MainWindow(QMainWindow):
 
         self.media_panel = MediaPanel()
         self.layout.addWidget(self.media_panel, 0, 1, 1, 3)
+        
 
 
 if __name__ == "__main__":

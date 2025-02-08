@@ -13,6 +13,7 @@ class MediaPlayer(QWidget):
         self.setObjectName("MediaPlayer")
         self.super_layout = QVBoxLayout()
         self.control_layout = QHBoxLayout()
+        self.control_layout.setAlignment(Qt.AlignmentFlag.AlignLeft)
         
         self.video_widget = QVideoWidget()
         
@@ -28,15 +29,19 @@ class PlayPause(QPushButton):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setObjectName("PlayPause")
-        self.setEnabled(False)
-        self.setFixedSize(30, 30)
+        self.setFixedSize(32, 32)
         self.icons = [QIcon("Images/play-button.png"), QIcon("Images/pause-button.png")]
-        self.icon_index = 0
-        self.setIcon(self.icons[self.icon_index])
-        self.setIconSize(QSize(20, 20))
+        self.pause = False
+        self.setIcon(self.icons[0])
+        self.setIconSize(QSize(14, 14))
         self.clicked.connect(lambda: self.trigger())
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         
     def trigger(self):
-        self.icon_index -= 1
-        self.setIcon(self.icons[self.icon_index])
+        self.pause = not self.pause
+        if not self.pause:
+            self.setIcon(self.icons[0])
+        else:
+            self.setIcon(self.icons[1])
+        # TODO: video pause / play logic
+        

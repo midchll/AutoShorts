@@ -38,8 +38,7 @@ class FileDialog(QPushButton):
         self.VALID_EXTENSION = ('.mp4', '.mov') if expected=="video" else ('.mp3', 'wav')
         self.PROMPT = f"Select {expected} file"
         self.TIP = f"{expected.capitalize()} files ({" *".join(self.VALID_EXTENSION)})"
-        self.associated_file = None
-        self.setFixedHeight(87)
+        self.setFixedHeight(84)
         self.setIcon(QIcon(icon))
         self.setIconSize(QSize(20, 20))
         self.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -51,7 +50,7 @@ class FileDialog(QPushButton):
         if dialog:
             file_name = dialog
             if file_name[0].endswith(self.VALID_EXTENSION):
-                self.associated_file = file_name
+                self.parent.asc_file = file_name
             else:
                 pass
 
@@ -59,7 +58,9 @@ class ControlGroup(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setObjectName("ControlGroup")
+        self.asc_file = None
         self.layout = QHBoxLayout()
+        self.setFixedHeight(104)
         self.setLayout(self.layout)
         self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True)
 

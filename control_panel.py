@@ -23,9 +23,9 @@ class ControlPanel(QWidget):
         v_label = QLabel()
         v_label.setObjectName("VideoIndicator")
         v_label.setPixmap(QPixmap("Images/video-indicator.png"))
-        v_label.setFixedSize(40, 84)
+        v_label.setFixedSize(40, 83)
         v_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        v_dialog = FileDialog(icon="Images/folder.png", expected="video")
+        v_dialog = FileDialog(v_group, icon="Images/folder.png", expected="video")
         v_drag = DragDrop(icon="Images/upload-arrow.png")
         v_group.add_children([v_label, v_dialog, v_drag])
 
@@ -34,9 +34,9 @@ class ControlPanel(QWidget):
         a_label = QLabel()
         a_label.setObjectName("AudioIndicator")
         a_label.setPixmap(QPixmap("Images/audio-indicator.png"))
-        a_label.setFixedSize(40, 84)
+        a_label.setFixedSize(40, 83)
         a_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        a_dialog = FileDialog(icon="Images/folder.png", expected="audio")
+        a_dialog = FileDialog(a_group, icon="Images/folder.png", expected="audio")
         a_drag = DragDrop(icon="Images/upload-arrow.png")
         a_group.add_children([a_label, a_dialog, a_drag])
 
