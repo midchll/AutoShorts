@@ -34,12 +34,14 @@ class MediaPanel(QWidget):
         proc_group.setLayout(proc_group_layout)
         proc_group.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True)
         
-        media_player = MediaPlayer(self)
+        self.media_player = MediaPlayer(self)
                 
         self.layout.addWidget(proc_group, 0, 0, 1, 1)
-        self.layout.addWidget(media_player, 1, 0, 1, 1)
+        self.layout.addWidget(self.media_player, 1, 0, 1, 1)
         
     def update_media(self):
         video = self.main_window.video_file
         audio = self.main_window.audio_file
         print(f"Updating media player with Video: {video}, Audio: {audio}")
+        
+        self.media_player.update_media(video, audio)
