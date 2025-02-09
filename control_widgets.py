@@ -3,6 +3,8 @@ from PyQt6.QtCore import *
 from PyQt6.QtGui import *
 
 class DragDrop(QWidget):
+    file_selected = pyqtSignal(str)
+    
     def __init__(self, parent=None, icon=None):
         super().__init__(parent)
         self.setObjectName("DragDrop")
@@ -24,20 +26,23 @@ class DragDrop(QWidget):
         if event.mimeData().hasUrls():
             event.acceptProposedAction()
 
-    #TODO: separate video/audio(txt) file submissions using expected type param
     def dropEvent(self, event: QDropEvent):
         urls = event.mimeData().urls()
         for url in urls:
-            file_path = url.toLocalFile()
-            self.add_file(file_path)
+            file_path = urls[0].toLocalFile()
+            self.file_selected.emit(file_path)
 
 class FileDialog(QPushButton):
+    file_selected = pyqtSignal(str)
+    
     def __init__(self, parent=None, icon=None, expected=None):
         super().__init__(parent)
         self.setObjectName("FileDialog")
         self.VALID_EXTENSION = ('.mp4', '.mov') if expected=="video" else ('.mp3', 'wav')
         self.PROMPT = f"Select {expected} file"
-        self.TIP = f"{expected.capitalize()} files ({" *".join(self.VALID_EXTENSION)})"
+        self.TIP = f"{expected.capitalize()} Files ({' '.join(['*' + ext for ext in self.VALID_EXTENSION])})"
+        self.associated_file = None
+        
         self.setFixedHeight(84)
         self.setIcon(QIcon(icon))
         self.setIconSize(QSize(20, 20))
@@ -46,13 +51,10 @@ class FileDialog(QPushButton):
         self.clicked.connect(lambda: self.open_dialog())
 
     def open_dialog(self):
-        dialog = QFileDialog.getOpenFileName(self, self.PROMPT, r'', self.TIP)
-        if dialog:
-            file_name = dialog
-            if file_name[0].endswith(self.VALID_EXTENSION):
-                self.parent.asc_file = file_name
-            else:
-                pass
+        file_path, _ = QFileDialog.getOpenFileName(self, self.PROMPT, r'', self.TIP)
+        if file_path:
+            self.associated_file = file_path
+            self.file_selected.emit(file_path) # emit signal to ctrl panel
 
 class ControlGroup(QWidget):
     def __init__(self, parent=None):

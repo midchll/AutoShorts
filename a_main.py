@@ -1,5 +1,5 @@
-from control_panel import ControlPanel
 from PyQt6.QtWidgets import *
+from control_panel import *
 from PyQt6.QtCore import *
 from media_panel import *
 import sys
@@ -12,22 +12,24 @@ class MainWindow(QMainWindow):
         self.setObjectName('MainWindow')
         self.setWindowIcon(QIcon("Images/placeholder.png"))
         self.setMinimumSize(900, 700)
+        self.video_file = None
+        self.audio_file = None
 
-        central_widget = QWidget(self)
-        self.setCentralWidget(central_widget)
-
+        self.central_widget = QWidget()
+        self.central_widget.setContentsMargins(0, 0, 0, 0)
         self.layout = QGridLayout()
-        central_widget.setLayout(self.layout)
-        central_widget.setContentsMargins(0, 0, 0, 0)
 
-        self.control_panel = ControlPanel()
+        self.control_panel = ControlPanel(main_window=self)
+        self.media_panel = MediaPanel(main_window=self)
+        
         self.layout.addWidget(self.control_panel, 0, 0, 1, 1)
-
-        self.media_panel = MediaPanel()
         self.layout.addWidget(self.media_panel, 0, 1, 1, 3)
         
-
-
+        self.central_widget.setLayout(self.layout)
+        self.setCentralWidget(self.central_widget)
+        
+        self.control_panel.file_selected.connect(self.media_panel.update_media)
+        
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
