@@ -8,7 +8,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle('AutoShorts')
+        self.setWindowTitle('EasyMedia')
         self.setObjectName('MainWindow')
         self.setWindowIcon(QIcon("Images/placeholder.png"))
         self.setMinimumSize(900, 700)
