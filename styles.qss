@@ -23,7 +23,7 @@ QWidget#ControlGroup {
     background-color: #FFFFFF;
     border: none;
     border-radius: 10px;
-    margin-bottom: 3px;
+    margin-bottom: 1px;
 }
 
 #FileDialog:hover {
@@ -47,4 +47,40 @@ QWidget#ControlGroup {
     border-radius: 10px;
     color: #202020;
     padding: 8px;
+}
+
+#MediaPanel {
+    background-color: #252525;
+    border: 1px solid #303030;
+    border-radius: 16px;
+}
+
+#MediaPlayer {
+    padding-bottom: 10px;
+}
+
+#ProcessButton {
+    background-color: #FFE500;
+    border-radius: 8px;
+}
+
+#ProcessGroup {
+    background-color: #202020;
+    border: 1px solid #303030;
+    border-radius: 16px;
+}
+
+#PlaybackGroup {
+    background-color: #202020;
+    border: 1px solid #303030;
+    border-radius: 16px;
+}
+
+#PlayPause {
+    background-color: #FFE500;
+    border: none;
+    border-radius: 8px;
+}
+#PlayPause:hover {
+    background-color: #FFE500;
 }
